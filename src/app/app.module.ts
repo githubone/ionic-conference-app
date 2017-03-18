@@ -23,6 +23,12 @@ import { SupportPage } from '../pages/support/support';
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
 
+import { VideoService } from '../providers/video-service';
+import { VideoPage } from '../pages/videos/video.page';
+import { VideoDetailPage } from '../pages/videos/video-detail';
+import { AlertService } from '../providers/alert-service';
+
+
 
 @NgModule({
   declarations: [
@@ -40,7 +46,9 @@ import { UserData } from '../providers/user-data';
     SpeakerListPage,
     TabsPage,
     TutorialPage,
-    SupportPage
+    SupportPage,
+    VideoPage,
+    VideoDetailPage
   ],
   imports: [
     IonicModule.forRoot(ConferenceApp),
@@ -62,8 +70,10 @@ import { UserData } from '../providers/user-data';
     SpeakerListPage,
     TabsPage,
     TutorialPage,
-    SupportPage
+    SupportPage,
+    VideoPage,
+    VideoDetailPage
   ],
-  providers: [ConferenceData, UserData]
+  providers: [ConferenceData, UserData,VideoService,AlertService]
 })
 export class AppModule { }

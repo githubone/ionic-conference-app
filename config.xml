@@ -18,6 +18,7 @@
   <allow-navigation href="http://*/*"/>
   <allow-navigation href="tel:*"/>
   <allow-navigation href="mailto:*"/>
+  <allow-navigation href="http://192.168.0.5:8000"/>
   <platform name="android">
     <allow-intent href="market:*"/>
     <icon src="resources/android/icon/drawable-ldpi-icon.png" density="ldpi"/>
@@ -69,7 +70,7 @@
   <preference name="DisallowOverscroll" value="true"/>
   <preference name="android-minSdkVersion" value="16"/>
   <preference name="BackupWebStorage" value="none"/>
-  <preference name="StatusBarStyle" value="default" />
+  <preference name="StatusBarStyle" value="default"/>
   <preference name="SplashScreen" value="screen"/>
   <preference name="orientation" value="default"/>
   <preference name="SplashMaintainAspectRatio" value="true"/>
