@@ -18,6 +18,7 @@ import { SupportPage } from '../pages/support/support';
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
 import { VideoPage } from '../pages/videos/video.page';
+import { WelcomePage} from '../pages/welcome/welcome';
 
 export interface PageInterface {
   title: string;
@@ -68,16 +69,17 @@ export class ConferenceApp {
   ) {
 
     // Check if the user has already seen the tutorial
-    this.storage.get('hasSeenTutorial')
-      .then((hasSeenTutorial) => {
-        if (hasSeenTutorial) {
-          this.rootPage = TabsPage;
-        } else {
-          this.rootPage = TutorialPage;
-        }
-        this.platformReady()
-      })
-
+    // this.storage.get('hasSeenTutorial')
+    //   .then((hasSeenTutorial) => {
+    //     if (hasSeenTutorial) {
+    //       this.rootPage = TabsPage;
+    //     } else {
+    //       this.rootPage = TutorialPage;
+    //     }
+    //     this.platformReady()
+    //   })
+    this.rootPage = WelcomePage;
+    this.platformReady();
     // load the conference data
     confData.load();
 

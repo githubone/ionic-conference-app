@@ -21,6 +21,7 @@ enum VideosTypes {
 }
 
 @Component({
+  selector: 'video-page',
   templateUrl: 'video.html'
 })
 export class VideoPage {

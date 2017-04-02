@@ -1,3 +1,4 @@
+<ion-content>
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
@@ -21,34 +22,41 @@
   </ion-toolbar>
 </ion-header>
 <ion-content class="history">
-  <ion-list class="list-full-border">
-    <!--<ion-item *ngFor="let video of videos">-->
-      <!--<div>
-        <div class="bold"><a href="#" (click)="goto(video.Subject)">{{video.Subject}}</a></div>
-       
-        <div>Name: {{ video.Name }}</div>
-       
-      </div>-->
-       <ion-grid fixed>
-      <ion-row align-items-stretch>
-        <ion-col col-12 col-md-6 align-self-stretch align-self-center *ngFor="let video of videos">
+     <ion-list >
 
-       <ion-card class="speaker-card">
+    <ion-item-group >
 
-            <ion-card-header>
-              <button ion-item detail-none (click)="goto(video.Subject)">
-        <ion-avatar item-left>
-          <img src="{{video.Thumbnail}}" alt="Speaker profile pic">
-        </ion-avatar>
-        {{video.Subject}}
-      </button>
-            </ion-card-header>
-       </ion-card>
-      <ion-icon name="ios-star-outline" item-right></ion-icon>
-        </ion-col>
-      </ion-row>
-       </ion-grid>
-       
-    <!--</ion-item>-->
+      <ion-item-divider sticky>
+        <ion-label>
+         
+        </ion-label>
+      </ion-item-divider>
+
+      <ion-item-sliding *ngFor="let video of videos">
+        
+        <button ion-item (click)="goto(video.Subject)" >
+          <!--<h3>{{video.Name}}</h3>-->
+           <img class="avatar" src="{{video.Thumbnail}}" alt="Speaker profile pic">
+          <p>
+            {{video.Name}} &mdash; {{video.Subject}}
+            
+          </p>
+        </button>
+
+        <ion-item-options>
+          <button ion-button color="favorite" >
+            Favorite
+          </button>
+          <button ion-button color="danger">
+            Remove
+          </button>
+        </ion-item-options>
+
+      </ion-item-sliding>
+
+    </ion-item-group>
+
   </ion-list>
+
 </ion-content>
+

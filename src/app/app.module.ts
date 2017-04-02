@@ -27,7 +27,7 @@ import { VideoService } from '../providers/video-service';
 import { VideoPage } from '../pages/videos/video.page';
 import { VideoDetailPage } from '../pages/videos/video-detail';
 import { AlertService } from '../providers/alert-service';
-
+import { WelcomePage} from '../pages/welcome/welcome';
 
 
 @NgModule({
@@ -48,7 +48,8 @@ import { AlertService } from '../providers/alert-service';
     TutorialPage,
     SupportPage,
     VideoPage,
-    VideoDetailPage
+    VideoDetailPage,
+    WelcomePage
   ],
   imports: [
     IonicModule.forRoot(ConferenceApp),
@@ -72,7 +73,8 @@ import { AlertService } from '../providers/alert-service';
     TutorialPage,
     SupportPage,
     VideoPage,
-    VideoDetailPage
+    VideoDetailPage,
+    WelcomePage
   ],
   providers: [ConferenceData, UserData,VideoService,AlertService]
 })
