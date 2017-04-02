@@ -23,14 +23,17 @@ import { SupportPage } from '../pages/support/support';
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
 
-import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { SplashScreen } from '@ionic-native/splash-screen';
-
+<<<<<<< HEAD
 import { VideoService } from '../providers/video-service';
 import { VideoPage } from '../pages/videos/video.page';
 import { VideoDetailPage } from '../pages/videos/video-detail';
 import { AlertService } from '../providers/alert-service';
 import { WelcomePage} from '../pages/welcome/welcome';
+=======
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { SplashScreen } from '@ionic-native/splash-screen';
+>>>>>>> upstream/master
+
 
 @NgModule({
   declarations: [
@@ -48,7 +51,10 @@ import { WelcomePage} from '../pages/welcome/welcome';
     SpeakerListPage,
     TabsPage,
     TutorialPage,
-    SupportPage
+    SupportPage,
+    VideoPage,
+    VideoDetailPage,
+    WelcomePage
   ],
   imports: [
     IonicModule.forRoot(ConferenceApp),
@@ -70,15 +76,20 @@ import { WelcomePage} from '../pages/welcome/welcome';
     SpeakerListPage,
     TabsPage,
     TutorialPage,
-    SupportPage
+    SupportPage,
+    VideoPage,
+    VideoDetailPage,
+    WelcomePage
   ],
+<<<<<<< HEAD
+  providers: [ConferenceData, UserData,VideoService,AlertService]
+=======
   providers: [
     ConferenceData,
     UserData,
     InAppBrowser,
-    SplashScreen,
-    VideoService,
-    AlertService
+    SplashScreen
   ]
+>>>>>>> upstream/master
 })
 export class AppModule { }
