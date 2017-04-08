@@ -3,8 +3,9 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import * as _ from 'lodash';
 import { VideoModel } from './video.model';
-import { File } from 'ionic-native';
-import { InAppBrowser } from 'ionic-native';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { SplashScreen } from '@ionic-native/splash-screen';
+
 
 declare var cordova: any;
 
@@ -50,7 +51,7 @@ export class VideoDetailPage {
     }
 
     goToTwitter(){
-        new InAppBrowser('https://twitter.com/BBC','_blank');
+       
     }
 
     toggleFavourite(){
