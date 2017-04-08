@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit} from '@angular/core';
 import { NavController, AlertController, AlertOptions } from 'ionic-angular';
 //import { NotificationPage } from '../notification/notification';
 import { VideoModel } from './video.model';
@@ -24,7 +24,7 @@ enum VideosTypes {
   selector: 'video-page',
   templateUrl: 'video.html'
 })
-export class VideoPage {
+export class VideoPage implements AfterViewInit {
   queryText = '';
   videos: VideoModel[] = [];
   videoType: string = '0';
@@ -59,6 +59,10 @@ export class VideoPage {
       }
     });
 
+  }
+
+  ngAfterViewInit(){
+    alert('page load')
   }
 
   setPageTitleWithVideosTotal(){
@@ -108,5 +112,27 @@ export class VideoPage {
     })
     //this.nav.setRoot(VideoDetailPage);
   }
+
+  favourite(video:VideoModel){
+      console.log(video);
+      let videoToFavourite = _.find(this.videos, (v:VideoModel)=> {
+          return v.Name == video.Name;
+      });
+      videoToFavourite.isFavourite = !videoToFavourite.isFavourite;
+      console.log(videoToFavourite);
+      console.log(this.videos);
+  }
+
+  remove(video:VideoModel){
+       console.log(video);
+       console.log(this.videos.length);
+      _.remove(this.videos,(v:VideoModel)=> {
+            return v.Name == video.Name;
+      });
+
+      console.log(this.videos.length);
+  }
+
+  
 }
 

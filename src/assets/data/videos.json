@@ -6,7 +6,8 @@
    "VideoType": 1,
    "Name": "topgear.mp4",
    "Poster":"topgear.jpg",
-   "Thumbnail": "topgeartn.jpg"
+   "Thumbnail": "topgeartn.jpg",
+   "isFavourite": true
 },
 {
    "Subject": "Adele at the BBC",
@@ -15,7 +16,8 @@
     "VideoType": 1,
     "Name": "adeleatbbc.mp4",
    "Poster":"adeleatbbc.jpg",
-    "Thumbnail": "adeleatbbctn.jpg"
+    "Thumbnail": "adeleatbbctn.jpg",
+     "isFavourite": true
 }
 
 ]

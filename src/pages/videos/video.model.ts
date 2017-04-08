@@ -1,8 +1,10 @@
 export class VideoModel {
-    id:number;
     Subject:string;
     Comment: string;
+    EstimatedHours: number;
     Name:string;
     Poster:string;
     Thumbnail:string;
+    VideoType: number;
+    isFavourite: boolean;
 }

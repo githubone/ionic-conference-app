@@ -23,17 +23,8 @@
 </ion-header>
 <ion-content class="history">
      <ion-list >
-
     <ion-item-group >
-
-      <ion-item-divider sticky>
-        <ion-label>
-         
-        </ion-label>
-      </ion-item-divider>
-
-      <ion-item-sliding *ngFor="let video of videos">
-        
+      <ion-item-sliding *ngFor="let video of videos">   
         <button ion-item (click)="goto(video.Subject)" >
           <!--<h3>{{video.Name}}</h3>-->
            <img class="avatar" src="{{video.Thumbnail}}" alt="Speaker profile pic">
@@ -44,10 +35,10 @@
         </button>
 
         <ion-item-options>
-          <button ion-button color="favorite" >
+          <button (click)="favourite(video)" ion-button color="favorite" ><ion-icon *ngIf="video.isFavourite"    name="star"></ion-icon>
             Favorite
           </button>
-          <button ion-button color="danger">
+          <button (click)="remove(video)" ion-button color="danger">
             Remove
           </button>
         </ion-item-options>

@@ -48,7 +48,10 @@ import { WelcomePage} from '../pages/welcome/welcome';
     SpeakerListPage,
     TabsPage,
     TutorialPage,
-    SupportPage
+    SupportPage,
+    VideoPage,
+    VideoDetailPage,
+    WelcomePage
   ],
   imports: [
     IonicModule.forRoot(ConferenceApp),
@@ -70,7 +73,10 @@ import { WelcomePage} from '../pages/welcome/welcome';
     SpeakerListPage,
     TabsPage,
     TutorialPage,
-    SupportPage
+    SupportPage,
+    VideoPage,
+    VideoDetailPage,
+    WelcomePage
   ],
   providers: [
     ConferenceData,
