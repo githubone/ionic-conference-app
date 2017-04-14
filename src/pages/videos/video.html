@@ -1,4 +1,4 @@
-<ion-content>
+
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
@@ -28,6 +28,7 @@
         <button ion-item (click)="goto(video.Subject)" >
           <!--<h3>{{video.Name}}</h3>-->
            <img class="avatar" src="{{video.Thumbnail}}" alt="Speaker profile pic">
+           <ion-icon *ngIf="video.isFavourite"    name="star"></ion-icon>
           <p>
             {{video.Name}} &mdash; {{video.Subject}}
             
@@ -35,9 +36,9 @@
         </button>
 
         <ion-item-options>
-          <button (click)="favourite(video)" ion-button color="favorite" ><ion-icon *ngIf="video.isFavourite"    name="star"></ion-icon>
+          <!--<button (click)="favourite(video)" ion-button color="favorite" ><ion-icon *ngIf="video.isFavourite"    name="star"></ion-icon>
             Favorite
-          </button>
+          </button>-->
           <button (click)="remove(video)" ion-button color="danger">
             Remove
           </button>

@@ -5,7 +5,8 @@ import * as _ from 'lodash';
 import { VideoModel } from './video.model';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { VideoPage } from './video.page';
+import { Events } from 'ionic-angular';
 
 declare var cordova: any;
 
@@ -22,11 +23,15 @@ export class VideoDetailPage {
     videoCtrlSrc: string = '';
     videoPosterSrc:string= '';
     favVisible: boolean = true;
+    isPlaying: boolean = false;
+    videoStatusDisplay = "Play"
     constructor(
         public nav: NavController,
         public navParams: NavParams,
         public storage: Storage,
-        public alertCtrl: AlertController
+        public alertCtrl: AlertController,
+        public events: Events,
+        public inAppBrowser: InAppBrowser
     ) {
        
         let subject = this.navParams.get("subject");
@@ -37,26 +42,55 @@ export class VideoDetailPage {
                     return video.Subject === subject;
                 })
             }
-            console.log(this.filteredVideos);
+            //console.log(this.filteredVideos);
             this.videoCtrlSrc = "assets/video/" + this.filteredVideos[0].Name;
             this.videoPosterSrc = "assets/img/videos/" + this.filteredVideos[0].Poster;
             this.filteredVideo = this.filteredVideos[0];
-        });
-       
-        
+            this.favVisible = this.filteredVideo.isFavourite;
+        }); 
     }
 
     playVideo(event: any) {
-        this.videoCtrl.nativeElement.play();
-    }
-
-    goToTwitter(){
+        if(this.isPlaying) {
+             this.videoCtrl.nativeElement.pause();
+             this.videoStatusDisplay = "Play";
+        } else {
+             this.videoCtrl.nativeElement.play();
+              this.videoStatusDisplay = "Pause";
+        }
        
+       this.isPlaying = ! this.isPlaying;
+    }
+   
+    goToTwitter(){
+       this.inAppBrowser.create("https://twitter.com/mavecuk", '_blank')
     }
 
     toggleFavourite(){
         this.favVisible = !this.favVisible;
+        this.filteredVideo.isFavourite =  this.favVisible;
+        this.updateStorage()
     }
-
     
+    updateStorage(){
+        this.storage.get("videos").then((storedVideos)=>{
+            if(storedVideos){
+             
+               let videoToUpdate =  _.find(storedVideos, (video: any) => {
+                    return video.Subject === this.filteredVideo.Subject;
+                })
+                var index = _.indexOf(storedVideos, videoToUpdate);
+                
+                if(index !== -1) {
+
+                    storedVideos.splice(index,1, this.filteredVideo)  
+                    // update storage with changed video item
+                    this.storage.set("videos", storedVideos).then(()=> {
+                    // tell whoever who wants to know storage has changed
+                    this.events.publish("storechange");
+                });
+                }         
+            }
+        })
+    }
 }

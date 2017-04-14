@@ -11,8 +11,8 @@
 <ion-content class="cards-bg">
     <ion-card>
         <div class="video-container">
-
-            <video poster="{{videoPosterSrc}}" src="{{videoCtrlSrc}}" #videoControl (click)="playVideo()" controls="controls" width="100%"
+            <!-- controls="controls"  (click)="playVideo()"-->
+            <video poster="{{videoPosterSrc}}" src="{{videoCtrlSrc}}" #videoControl   width="100%"
                 height="100%"></video>
         </div>
         <ion-card-content>
@@ -33,13 +33,14 @@
             </ion-col>
             <ion-col text-center>
                 <button (click)="playVideo()" ion-button clear small color="danger" icon-left>
-          <ion-icon name='musical-notes'></ion-icon>
-          Listen
+          <ion-icon *ngIf="isPlaying" name='musical-notes'></ion-icon>
+          <ion-icon *ngIf="!isPlaying" name='volume-off'></ion-icon>
+            {{videoStatusDisplay}}
         </button>
             </ion-col>
             <ion-col text-right>
                 <button (click)="goToTwitter()" ion-button clear small color="danger" icon-left>
-          <ion-icon name="logo-twitter"></ion-icon>
+          <ion-icon  name="logo-twitter"></ion-icon>
           Tweet
         </button>
             </ion-col>

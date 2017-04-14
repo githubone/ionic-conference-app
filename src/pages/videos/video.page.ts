@@ -1,4 +1,7 @@
-import { Component, AfterViewInit} from '@angular/core';
+import { Component, AfterViewInit, OnInit,
+OnDestroy, DoCheck, OnChanges,AfterContentInit,
+AfterContentChecked, AfterViewChecked
+} from '@angular/core';
 import { NavController, AlertController, AlertOptions } from 'ionic-angular';
 //import { NotificationPage } from '../notification/notification';
 import { VideoModel } from './video.model';
@@ -7,6 +10,7 @@ import { VideoDetailPage } from './video-detail';
 import { Storage } from '@ionic/storage';
 import { AlertService } from '../../providers/alert-service';
 import * as _ from 'lodash';
+import { Events } from 'ionic-angular';
 
 enum VideoTypes {
   all,
@@ -24,7 +28,8 @@ enum VideosTypes {
   selector: 'video-page',
   templateUrl: 'video.html'
 })
-export class VideoPage implements AfterViewInit {
+export class VideoPage implements AfterViewInit, 
+OnInit,OnDestroy,DoCheck, OnChanges, AfterContentChecked, AfterContentInit{
   queryText = '';
   videos: VideoModel[] = [];
   videoType: string = '0';
@@ -34,7 +39,8 @@ export class VideoPage implements AfterViewInit {
     private service: VideoService,
     private storage: Storage,
     private alertCtrl: AlertController,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private events: Events
   ) {
     this.storage.get("videos").then((storedVideos) => {
       if (storedVideos && storedVideos.length > 0) {
@@ -50,8 +56,7 @@ export class VideoPage implements AfterViewInit {
                   this.updateVideosListing();
               })
             },
-            (res)=> this.alertService.showAlert({ title: 'Connection Issue. Try again later', subTitle: res }));
-            
+            (res)=> this.alertService.showAlert({ title: 'Connection Issue. Try again later', subTitle: res }));  
           //} else {
            // this.alertService.showAlert({ title: 'Connection Status', subTitle: 'No //Network connection detected !' })
           //}
@@ -61,8 +66,54 @@ export class VideoPage implements AfterViewInit {
 
   }
 
-  ngAfterViewInit(){
-    alert('page load')
+  ngOnInit() {
+    //console.log('init');
+    // Properties are resolved and things like
+    // this.mapWindow and this.mapControls
+    // had a chance to resolve from the
+    // two child components <map-window> and <map-controls>
+
+   // update list from store when store changed
+   this.events.subscribe("storechange",()=> {
+    // console.log('store change')
+     this.storage.get("videos").then((storeVideos)=> {
+       if(storeVideos && storeVideos.length > 0){
+         this.updateVideosListing(); 
+       }
+     })
+   })
+  }
+  ngOnDestroy() {
+      //console.log('destroy');
+      // Speak now or forever hold your peace
+  }
+  ngDoCheck() {
+      //console.log('check');
+      // Custom change detection
+  }
+  ngOnChanges() {
+      //  console.log('changes');
+      // Called right after our bindings have been checked but only
+      // if one of our bindings has changed.
+      //
+      // changes is an object of the format:
+      // {
+      //   'prop': PropertyUpdate
+      // }
+  }
+  ngAfterContentInit() {
+      // console.log('content init');
+      // Component content has been initialized
+  }
+  ngAfterContentChecked() {
+      //console.log('content checked');// Component content has been Checked
+  }
+  ngAfterViewInit() {
+      //console.log('view init');
+      // Component views are initialized
+  }
+  ngAfterViewChecked() {
+      //console.log('after checked');// Component views have been checked
   }
 
   setPageTitleWithVideosTotal(){
@@ -113,25 +164,22 @@ export class VideoPage implements AfterViewInit {
     //this.nav.setRoot(VideoDetailPage);
   }
 
-  favourite(video:VideoModel){
-      console.log(video);
-      let videoToFavourite = _.find(this.videos, (v:VideoModel)=> {
-          return v.Name == video.Name;
-      });
-      videoToFavourite.isFavourite = !videoToFavourite.isFavourite;
-      console.log(videoToFavourite);
-      console.log(this.videos);
-  }
-
   remove(video:VideoModel){
-       console.log(video);
-       console.log(this.videos.length);
+       //console.log(video);
+       //console.log(this.videos.length);
       _.remove(this.videos,(v:VideoModel)=> {
             return v.Name == video.Name;
       });
 
-      console.log(this.videos.length);
+      //console.log(this.videos.length);
   }
+  // favourite(video:VideoModel){
+  //     //console.log(video);
+  //     let videoToFavourite = _.find(this.videos, (v:VideoModel)=> {
+  //         return v.Name == video.Name;
+  //     });
+  //     videoToFavourite.isFavourite = !videoToFavourite.isFavourite;
+  // }
 
   
 }
