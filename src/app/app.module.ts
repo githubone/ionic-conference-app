@@ -6,6 +6,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Camera} from '@ionic-native/camera';
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -34,6 +35,7 @@ import { VideoPage } from '../pages/videos/video.page';
 import { VideoDetailPage } from '../pages/videos/video-detail';
 import { AlertService } from '../providers/alert-service';
 import { WelcomePage} from '../pages/welcome/welcome';
+import { PhotoPage } from '../pages/photo/photo';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import { WelcomePage} from '../pages/welcome/welcome';
     SupportPage,
     VideoPage,
     VideoDetailPage,
-    WelcomePage
+    WelcomePage,
+    PhotoPage
   ],
   imports: [
     BrowserModule,
@@ -97,7 +100,8 @@ import { WelcomePage} from '../pages/welcome/welcome';
     SupportPage,
     VideoPage,
     VideoDetailPage,
-    WelcomePage
+    WelcomePage,
+    PhotoPage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },
@@ -106,7 +110,9 @@ import { WelcomePage} from '../pages/welcome/welcome';
     InAppBrowser,
     SplashScreen,
     VideoService,
-    AlertService
+    AlertService,
+    Camera
+    
   ]
 })
 export class AppModule { }

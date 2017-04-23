@@ -20,7 +20,7 @@ import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
 import { VideoPage } from '../pages/videos/video.page';
 import { WelcomePage} from '../pages/welcome/welcome';
-
+import { PhotoPage } from '../pages/photo/photo';
 
 export interface PageInterface {
   title: string;
@@ -45,6 +45,7 @@ export class ConferenceApp {
   // the left menu only works after login
   // the login page disables the left menu
   appPages: PageInterface[] = [
+     { title: 'Photos', name: 'Photo', index: 5, component: PhotoPage, icon: 'information-circle' },
      { title: 'Videos', name: 'VideoPage', index: 4, component: VideoPage, icon: 'information-circle' },
     { title: 'Schedule', name: 'TabsPage', component: TabsPage, tabComponent: SchedulePage, index: 0, icon: 'calendar' },
     { title: 'Speakers', name: 'TabsPage', component: TabsPage, tabComponent: SpeakerListPage, index: 1, icon: 'contacts' },

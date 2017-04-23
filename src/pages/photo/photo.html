@@ -1,0 +1,33 @@
+<!--
+  Generated template for the Photo page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>photo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <div class="photo-image-wrapper">
+     
+      <img [src]="DomSanitizer.bypassSecurityTrustUrl(base64Image)"/>
+    </div>
+    <ion-item>
+      <button ion-button icon-left clear item-left
+          (click)="takePicture()"
+         >
+        <ion-icon name="cloud-upload"></ion-icon>
+        Take
+      </button>
+      
+    </ion-item>
+  </ion-card>
+
+</ion-content>
