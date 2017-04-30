@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "1.2.4",
+    "orientation-exif-blob": "^1.0.1",
     "typescript": "~2.2.1"
   },
   "config": {}
