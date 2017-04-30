@@ -64,7 +64,7 @@ import { PhotoPage } from '../pages/photo/photo';
     HttpModule,
     IonicModule.forRoot(ConferenceApp, {}, {
       links: [
-        { component: TabsPage, name: 'Tabs', segment: 'tabs' },
+        { component: TabsPage, name: 'TabsPage', segment: 'tabs' },
         { component: SchedulePage, name: 'Schedule', segment: 'schedule' },
         { component: SessionDetailPage, name: 'SessionDetail', segment: 'sessionDetail/:name' },
         { component: ScheduleFilterPage, name: 'ScheduleFilter', segment: 'scheduleFilter' },

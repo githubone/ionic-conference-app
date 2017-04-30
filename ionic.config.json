@@ -1,6 +1,7 @@
 {
   "name": "mave-conference-app",
   "app_id": "",
-  "type cript": true,
-  "v2": true
+
+  "type": "ionic-angular"
+
 }
