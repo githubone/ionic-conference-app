@@ -30,6 +30,8 @@ import { SupportPage } from '../pages/support/support';
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
 
+import { Network} from '@ionic-native/network';
+import { NetworkService} from '../providers/network-service';
 import { VideoService } from '../providers/video-service';
 import { VideoPage } from '../pages/videos/video.page';
 import { VideoDetailPage } from '../pages/videos/video-detail';
@@ -111,7 +113,9 @@ import { PhotoPage } from '../pages/photo/photo';
     SplashScreen,
     VideoService,
     AlertService,
-    Camera
+    Camera,
+    Network,
+    NetworkService
     
   ]
 })
