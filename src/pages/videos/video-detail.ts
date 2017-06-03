@@ -4,7 +4,8 @@ import { Storage } from '@ionic/storage';
 import * as _ from 'lodash';
 import { VideoModel } from './video.model';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
-import { Events } from 'ionic-angular';
+import { Events, PopoverController } from 'ionic-angular';
+ import {VideoRatePopoverPage} from '../videos/video-rate';
 
 declare var cordova: any;
 
@@ -29,7 +30,8 @@ export class VideoDetailPage {
         public storage: Storage,
         public alertCtrl: AlertController,
         public events: Events,
-        public inAppBrowser: InAppBrowser
+        public inAppBrowser: InAppBrowser,
+        public popOver: PopoverController
     ) {
        
         let subject = this.navParams.get("subject");
@@ -62,6 +64,11 @@ export class VideoDetailPage {
    
     goToTwitter(){
        this.inAppBrowser.create("https://twitter.com/mavecuk", '_blank')
+    }
+
+    rateVideo(event:Event){
+      let popover = this.popOver.create(VideoRatePopoverPage);
+      popover.present({ev:event});
     }
 
     toggleFavourite(){

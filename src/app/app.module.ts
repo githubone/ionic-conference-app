@@ -38,6 +38,7 @@ import { VideoDetailPage } from '../pages/videos/video-detail';
 import { AlertService } from '../providers/alert-service';
 import { WelcomePage} from '../pages/welcome/welcome';
 import { PhotoPage } from '../pages/photo/photo';
+import { VideoRatePopoverPage} from '../pages/videos/video-rate';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { PhotoPage } from '../pages/photo/photo';
     VideoPage,
     VideoDetailPage,
     WelcomePage,
-    PhotoPage
+    PhotoPage,
+    VideoRatePopoverPage
   ],
   imports: [
     BrowserModule,
@@ -103,7 +105,8 @@ import { PhotoPage } from '../pages/photo/photo';
     VideoPage,
     VideoDetailPage,
     WelcomePage,
-    PhotoPage
+    PhotoPage,
+    VideoRatePopoverPage
   ],
   providers: [
     { provide: ErrorHandler, useClass: IonicErrorHandler },

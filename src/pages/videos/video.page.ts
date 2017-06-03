@@ -10,7 +10,8 @@ import { VideoDetailPage } from './video-detail';
 import { Storage } from '@ionic/storage';
 import { AlertService } from '../../providers/alert-service';
 import * as _ from 'lodash';
-import { Events } from 'ionic-angular';
+import { Events, ToastController, Toast } from 'ionic-angular';
+
 
 enum VideoTypes {
   all,
@@ -28,20 +29,28 @@ enum VideosTypes {
   selector: 'video-page',
   templateUrl: 'video.html'
 })
+
 export class VideoPage implements AfterViewInit, 
 OnInit,OnDestroy,DoCheck, OnChanges, AfterContentChecked, AfterContentInit{
   queryText = '';
   videos: VideoModel[] = [];
   videoType: string = '0';
   pageTitleWithVideosTotal:string = '';
+  toast:Toast ;
   constructor(
     private nav: NavController,
     private service: VideoService,
     private storage: Storage,
     private alertCtrl: AlertController,
     private alertService: AlertService,
-    private events: Events
+    private events: Events,
+    private toastCtrl: ToastController
   ) {
+     this.initialize();
+
+  }
+
+  initialize() {
     this.storage.get("videos").then((storedVideos) => {
       if (storedVideos && storedVideos.length > 0) {
           this.updateVideosListing(); 
@@ -63,7 +72,6 @@ OnInit,OnDestroy,DoCheck, OnChanges, AfterContentChecked, AfterContentInit{
         //})
       }
     });
-
   }
 
   ngOnInit() {
@@ -126,6 +134,7 @@ OnInit,OnDestroy,DoCheck, OnChanges, AfterContentChecked, AfterContentInit{
       if (storedVideos && storedVideos.length > 0) {
                if(this.queryText.length == 0){
                     this.filterByVideosTypes(storedVideos);
+                    // this.showToast();
                     return;
                }
                // filter based on subject and VideoType
@@ -138,10 +147,14 @@ OnInit,OnDestroy,DoCheck, OnChanges, AfterContentChecked, AfterContentInit{
                 })
                 this.videos = filteredList;
                 this.setPageTitleWithVideosTotal();
+                 this.showToast();
       } else {
       
           this.setPageTitleWithVideosTotal()
+           this.showToast();
       }
+
+     
    });
  }
 
@@ -180,6 +193,16 @@ OnInit,OnDestroy,DoCheck, OnChanges, AfterContentChecked, AfterContentInit{
   //     });
   //     videoToFavourite.isFavourite = !videoToFavourite.isFavourite;
   // }
+
+  showToast() {
+    const toast = this.toastCtrl.create({
+      message: 'Operation completes',
+      duration: 2000,
+      position: 'middle' // bottom; middle; top
+    })
+
+    toast.present();  
+  }
 
   
 }
